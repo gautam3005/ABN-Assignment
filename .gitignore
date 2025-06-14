@@ -11,7 +11,7 @@ allure-results/
 sample_JS_scripts/
 tests/
 tests-examples/
-allure commands.json/
-testdata.json/
-testdataPOM.json/
+/allure commands.json/
+/testdata.json/
+/testdataPOM.json/
 .DS_Store
