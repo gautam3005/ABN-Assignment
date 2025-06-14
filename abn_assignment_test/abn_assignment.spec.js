@@ -12,7 +12,7 @@ const homepage = require('../ABN_Assignment_Pages/homePage')
 //function to verify pages and login and log out of single page application using POM and data driven concepts.
 test("Single Page HTML Application", async function ({page}) 
 {
-    await page.goto("file:///Users/gautamprasad/Downloads/testautomation-web/index.html")
+    await page.goto(`file://${__dirname}/../index.html`);
     const loginPage=new loginpage(page)
     await loginPage.verifyLoginPage()
     await loginPage.incorrectLoginCreds(wdata.user,wdata.pwd)
@@ -26,8 +26,8 @@ test("Single Page HTML Application", async function ({page})
 const path = require('path');
 
 test('Check broken external links in local HTML file', async ({ page }) => {
-  const filePath = path.resolve(__dirname, 'file:///Users/gautamprasad/Downloads/testautomation-web/index.html'); 
-  await page.goto('file:///Users/gautamprasad/Downloads/testautomation-web/index.html');
+  const filePath = path.resolve(__dirname, `file://${__dirname}/../index.html`); 
+  await page.goto(`file://${__dirname}/../index.html`);
 
   const links = await page.$$('a');
 
