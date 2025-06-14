@@ -17,12 +17,19 @@ A Node.js-based end-to-end test automation framework using [Playwright](https://
 
 ## 📂 Project Structure
 
-|── ABN_Assignment_Pages/ # Page Object Models
+├── ABN_Assignment_Pages/ # Page Object Models
+
 ├── abn_assignment_test/ # Playwright test specs
+
 ├── abn_assignment_testdata/ # Test data in JSON
+
 ├── playwright.config.js # Playwright config
+
 ├── package.json # Project dependencies & scripts
-└── .github/workflows/ # CI workflows (GitHub Actions)
+
+├── .github/workflows/ # CI workflows (GitHub Actions)
+
+└── README.md               # Project documentation
 
 ## 🛠️ Installation & Setup
 
@@ -53,15 +60,22 @@ npx playwright show-report
 ```
 
 ⚙️ GitHub Actions CI
-This repo includes a CI workflow:
-Runs on every push and pull_request to main or master
-Installs dependencies
-Runs Playwright tests in Chromium, WebKit and Firefox
-Uploads test report artifacts
-Location: .github/workflows/playwright.yml
+  *This repo includes a CI workflow
+  
+  *Runs on every push and pull_request to main or master
+  
+  *Installs dependencies
+  
+  *Runs Playwright tests in Chromium, WebKit and Firefox
+  
+  *Uploads test report artifacts
+  
+  *Location: .github/workflows/playwright.yml
 
 🙌 Acknowledgements
+
 [Playwright](https://playwright.dev/)
+
 [GitHub Actions](https://docs.github.com/en/actions)
 
 
