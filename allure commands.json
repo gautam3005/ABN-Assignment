@@ -1,0 +1,6 @@
+{
+
+    "runtestsincmd":"npx playwright test --reporter=allure-playwright",
+    "generatereport":"allure generate ./allure-results -o ./allure-report",
+    "openreport":"allure open ./allure-report"
+}
