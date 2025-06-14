@@ -46,6 +46,7 @@ npx playwright install --with-deps
 ```
 
 🧪 Running Tests Locally 
+
 Run all tests (default):
 ```bash
 npx playwright test
@@ -60,6 +61,7 @@ npx playwright show-report
 ```
 
 ⚙️ GitHub Actions CI
+
   *This repo includes a CI workflow
   
   *Runs on every push and pull_request to main or master
