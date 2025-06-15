@@ -1,34 +1,42 @@
-const {test} = require('@playwright/test')
-const { log } = require('console')
-
-//reading test data from json files
-const jdata = require('../abn_assignment_testdata/assignmentData.json')
-const wdata = require('../abn_assignment_testdata/assignmentData_negative.json')
-
-//calling page as objects
-const loginpage = require('../ABN_Assignment_Pages/loginpage')
-const homepage = require('../ABN_Assignment_Pages/homePage')
-
-//function to verify pages and login and log out of single page application using POM and data driven concepts.
-test("Single Page HTML Application", async function ({page}) 
-{
-    await page.goto(`file://${__dirname}/../index.html`);
-    const loginPage=new loginpage(page)
-    await loginPage.verifyLoginPage()
-    await loginPage.incorrectLoginCreds(wdata.user,wdata.pwd)
-    await loginPage.loginToApplication(jdata.user,jdata.pwd)
-    const homePage=new homepage(page)
-    await homePage.verifyHomePage()
-    await homePage.logoutofapplication()
-})
-
-// check-broken-links
+const { test } = require('@playwright/test');
 const path = require('path');
 
-test('Check broken external links in local HTML file', async ({ page }) => {
-  const filePath = path.resolve(__dirname, `file://${__dirname}/../index.html`); 
+// Test data
+const jdata = require('../abn_assignment_testdata/assignmentData.json');
+const wdata = require('../abn_assignment_testdata/assignmentData_negative.json');
+
+// Page Object Models
+const LoginPage = require('../ABN_Assignment_Pages/loginpage');
+const HomePage = require('../ABN_Assignment_Pages/homePage');
+
+let loginPage;
+let homePage;
+
+test.beforeEach(async ({ page }, testInfo) => {
+  // Navigate to local HTML file before every test
   await page.goto(`file://${__dirname}/../index.html`);
 
+  // Initialize POMs only for login tests
+  if (testInfo.title.includes('Single Page')) {
+    loginPage = new LoginPage(page);
+    homePage = new HomePage(page);
+  }
+});
+
+test.afterEach(async ({ page }) => {
+  // Example cleanup: clear storage or cookies
+  await page.evaluate(() => localStorage.clear());
+});
+
+test('Single Page HTML Application', async ({ page }) => {
+  await loginPage.verifyLoginPage();
+  await loginPage.incorrectLoginCreds(wdata.user, wdata.pwd);
+  await loginPage.loginToApplication(jdata.user, jdata.pwd);
+  await homePage.verifyHomePage();
+  await homePage.logoutofapplication();
+});
+
+test('Check broken external links in local HTML file', async ({ page }) => {
   const links = await page.$$('a');
 
   for (const link of links) {
@@ -49,7 +57,3 @@ test('Check broken external links in local HTML file', async ({ page }) => {
     }
   }
 });
-
-
-
-
