@@ -60,6 +60,16 @@ View HTML report:
 npx playwright show-report
 ```
 
+
+## 🧑‍💻 Run Tests in UI Mode (Debugging)
+
+To run tests using Playwright’s visual UI for easier debugging:
+
+```bash
+npx playwright test --ui
+``` 
+
+
 ⚙️ GitHub Actions CI
 
   *This repo includes a CI workflow
